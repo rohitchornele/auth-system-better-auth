@@ -1,0 +1,143 @@
+import { Link, useNavigate } from 'react-router-dom'
+import { useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { loginSchema } from '../validations/login.schema'
+import { toast } from 'sonner'
+import { authClient } from '../services/authClient'
+
+const LoginForm = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting }
+  } = useForm({
+    resolver: zodResolver(loginSchema),
+    defaultValues: {
+      email: '',
+      password: ''
+    }
+  })
+
+  const navigate = useNavigate()
+
+  const onSubmit = async values => {
+    const { data, error } = await authClient.signIn.email({
+      email: values.email,
+      password: values.password
+    })
+
+    if (error) {
+      toast.error(error.message)
+      return
+    }
+
+    toast.success('Welcome back!')
+
+    navigate('/dashboard')
+  }
+
+  return (
+    <div className='flex min-h-screen items-center justify-center bg-neutral-100 px-6 py-10'>
+      <div className='w-full max-w-md rounded-2xl border border-(--border) bg-(--card) p-8 shadow-lg'>
+        {/* Header */}
+        <div className='mb-8'>
+          <h1 className='text-3xl font-bold text-(--text)'>Welcome Back</h1>
+
+          <p className='mt-2 text-sm text-(--text-secondary)'>
+            Sign in to continue to your account.
+          </p>
+        </div>
+
+        {/* Form */}
+        <form onSubmit={handleSubmit(onSubmit)} className='space-y-5'>
+          {/* Email */}
+          <div>
+            <label
+              htmlFor='email'
+              className='mb-2 block text-sm font-medium text-neutral-700'
+            >
+              Email
+            </label>
+
+            <input
+              {...register('email')}
+              id='email'
+              type='email'
+              placeholder='john@example.com'
+              className={`h-11 w-full rounded-lg border px-4 outline-none transition ${
+                errors.email
+                  ? 'border-red-500 focus:border-red-500'
+                  : 'border-neutral-300 focus:border-black'
+              }`}
+            />
+
+            {errors.email && (
+              <p className='mt-1 text-sm text-red-500'>
+                {errors.email.message}
+              </p>
+            )}
+          </div>
+
+          {/* Password */}
+          <div>
+            <div className='mb-2 flex items-center justify-between'>
+              <label
+                htmlFor='password'
+                className='text-sm font-medium text-neutral-700'
+              >
+                Password
+              </label>
+
+              <Link
+                to='/forgot-password'
+                className='text-sm text-(--text-secondary) hover:text-black'
+              >
+                Forgot Password?
+              </Link>
+            </div>
+
+            <input
+              {...register('password')}
+              id='password'
+              type='password'
+              placeholder='••••••••'
+              className={`h-11 w-full rounded-lg border px-4 outline-none transition ${
+                errors.password
+                  ? 'border-red-500 focus:border-red-500'
+                  : 'border-neutral-300 focus:border-black'
+              }`}
+            />
+
+            {errors.password && (
+              <p className='mt-1 text-sm text-red-500'>
+                {errors.password.message}
+              </p>
+            )}
+          </div>
+
+          {/* Submit */}
+          <button
+            type='submit'
+            disabled={isSubmitting}
+            className='h-11 w-full rounded-lg bg-black font-medium text-white transition hover:bg-neutral-800 disabled:cursor-not-allowed disabled:opacity-50'
+          >
+            {isSubmitting ? 'Signing In...' : 'Sign In'}
+          </button>
+        </form>
+
+        {/* Footer */}
+        <p className='mt-6 text-center text-sm text-(--text-secondary)'>
+          Don't have an account?{' '}
+          <Link
+            to='/register'
+            className='font-medium text-black hover:underline'
+          >
+            Create Account
+          </Link>
+        </p>
+      </div>
+    </div>
+  )
+}
+
+export default LoginForm

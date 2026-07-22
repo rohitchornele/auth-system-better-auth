@@ -1,0 +1,53 @@
+# Dependencies
+node_modules/
+**/node_modules/
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Logs
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+logs/
+*.log
+
+# Expo / React Native
+.expo/
+.expo-shared/
+dist/
+build/
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+android/.gradle/
+android/app/build/
+android/build/
+ios/Pods/
+ios/build/
+
+# React frontend / Vite
+society-management-web/dist/
+society-management-web/.vite/
+society-management-web/coverage/
+
+# Backend
+society-management-backend/dist/
+society-management-backend/coverage/
+society-management-backend/.cache/
+
+# OS / editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Temporary files
+.tmp/
+tmp/
+*.tmp

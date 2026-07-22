@@ -1,0 +1,5 @@
+export { default as KPICard } from './components/KPICard'
+export { default as StatsGrid } from './components/StatsGrid'
+export { default as RecentActivities } from './components/RecentActivities'
+export { default as QuickActions } from './components/QuickActions'
+export { default as DashboardPage } from './pages/Dashboard'
