@@ -1,0 +1,43 @@
+// import { ROLES } from "./roles.js";
+// import { PERMISSIONS } from "./permissions.js";
+
+// export const ROLE_PERMISSIONS = {
+//     [ROLES.OWNER]: [
+//         PERMISSIONS.RESIDENT_CREATE,
+//         PERMISSIONS.RESIDENT_READ,
+//         PERMISSIONS.RESIDENT_UPDATE,
+//         PERMISSIONS.RESIDENT_DELETE,
+//         PERMISSIONS.VISITOR_APPROVE,
+//         PERMISSIONS.DASHBOARD_READ,
+//     ],
+
+//     [ROLES.ADMIN]: [
+//         PERMISSIONS.RESIDENT_READ,
+//         PERMISSIONS.RESIDENT_CREATE,
+//         PERMISSIONS.RESIDENT_UPDATE,
+//         PERMISSIONS.VISITOR_APPROVE,
+//         PERMISSIONS.DASHBOARD_READ,
+//     ],
+
+//     [ROLES.MANAGER]: [
+//         PERMISSIONS.RESIDENT_READ,
+//         PERMISSIONS.VISITOR_APPROVE,
+//     ],
+
+//     [ROLES.SECURITY]: [
+//         PERMISSIONS.VISITOR_CREATE,
+//         PERMISSIONS.VISITOR_READ,
+//         PERMISSIONS.VISITOR_APPROVE,
+//     ],
+
+//     [ROLES.ACCOUNTANT]: [
+//         PERMISSIONS.BILLING_CREATE,
+//         PERMISSIONS.BILLING_READ,
+//     ],
+
+//     [ROLES.RESIDENT]: [
+//         PERMISSIONS.COMPLAINT_CREATE,
+//         PERMISSIONS.COMPLAINT_READ,
+//         PERMISSIONS.NOTICE_READ,
+//     ],
+// };

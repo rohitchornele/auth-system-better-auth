@@ -1,14 +1,21 @@
 import * as authService from "./auth.service.js";
+import { successResponse } from "../../utils/response.js";
 
-export async function getCurrentUser(req, res, next) {
-  try {
-    const session = await authService.getCurrentUser(req);
+export async function getSession(req, res) {
+  return successResponse(
+    res,
+    {
+      user: req.user,
+      session: req.session,
+    },
+    "Session fetched successfully"
+  );
+}
 
-    return res.status(200).json({
-      success: true,
-      data: session,
-    });
-  } catch (error) {
-    next(error);
-  }
+export async function getCurrentUser(req, res) {
+  return successResponse(
+    res,
+    req.user,
+    "Current user fetched successfully"
+  );
 }

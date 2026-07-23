@@ -1,4 +1,4 @@
-import KPICard from "./KPICard";
+import KPICard from "./StatCard";
 
 import {
     Users,

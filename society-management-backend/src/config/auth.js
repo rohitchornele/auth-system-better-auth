@@ -29,6 +29,13 @@ export const auth = betterAuth({
     },
 
     plugins: [
-        organization()
+        organization({
+            ac,
+            roles: {
+                owner,
+                admin,
+                member,
+            },
+        }),
     ]
 });
