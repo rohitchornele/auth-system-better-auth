@@ -1,26 +1,22 @@
 import { z } from "zod";
 
 export const workspaceSchema = z.object({
-    name: z
-        .string()
-        .trim()
-        .min(3, "Society name must be at least 3 characters.")
-        .max(100),
+  name: z.string().min(3, "Name is required"),
 
-    type: z.string().min(1, "Select a society type."),
+  slug: z
+    .string()
+    .min(3)
+    .regex(/^[a-z0-9-]+$/, "Invalid slug"),
 
-    address: z
-        .string()
-        .trim()
-        .min(5, "Address is required."),
+  societyType: z.string().min(1),
 
-    city: z.string().trim().min(2),
+  address: z.string().min(1),
 
-    state: z.string().trim().min(2),
+  city: z.string().min(1),
 
-    country: z.string().trim(),
+  state: z.string().min(1),
 
-    pincode: z
-        .string()
-        .regex(/^\d{6}$/, "Enter a valid pincode."),
+  pincode: z.string().min(6),
+
+  country: z.string().min(1),
 });

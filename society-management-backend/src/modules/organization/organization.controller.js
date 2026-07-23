@@ -46,3 +46,21 @@ export async function getCurrentOrganization(req, res, next) {
         next(error);
     }
 }
+
+export async function selectOrganization(req, res, next) {
+  try {
+    const organization =
+      await organizationService.selectOrganization(
+        req,
+        req.body.organizationId
+      );
+
+    return successResponse(
+      res,
+      organization,
+      "Organization selected successfully"
+    );
+  } catch (error) {
+    next(error);
+  }
+}

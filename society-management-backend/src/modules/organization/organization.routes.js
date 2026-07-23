@@ -25,4 +25,10 @@ router.get(
   organizationController.getCurrentOrganization
 );
 
+router.post(
+  "/select",
+  authenticate,
+  organizationController.selectOrganization
+);
+
 export default router;

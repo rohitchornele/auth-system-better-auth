@@ -1,35 +1,26 @@
-import { mockWorkspace, mockWorkspaces } from "@/mocks/workspace";
-
-const delay = (ms = 800) =>
-  new Promise((resolve) => setTimeout(resolve, ms));
+import api from "@/lib/axios";
 
 export const workspaceService = {
   async createWorkspace(data) {
-    await delay();
-
-    return {
-      ...mockWorkspace,
-      ...data,
-      id: crypto.randomUUID(),
-      slug: data.name.toLowerCase().replace(/\s+/g, "-"),
-    };
+    const response = await api.post("/api/organizations", data);
+    return response.data.data;
   },
 
   async getWorkspaces() {
-    await delay();
-
-    return mockWorkspaces;
+    const response = await api.get("/api/organizations");
+    return response.data.data;
   },
 
-  async getActiveWorkspace() {
-    await delay();
-
-    return mockWorkspace;
+  async getCurrentWorkspace() {
+    const response = await api.get("/api/organizations/current");
+    return response.data.data;
   },
 
-  async selectWorkspace(workspaceId) {
-    await delay();
+  async selectWorkspace(organizationId) {
+    const response = await api.post("/api/organizations/select", {
+      organizationId,
+    });
 
-    return workspaceId;
+    return response.data.data;
   },
 };
